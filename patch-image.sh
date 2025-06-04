@@ -101,6 +101,15 @@ if [ "$ENABLE_SSH" = true ]; then
     echo "SSH has been enabled for first boot"
 fi
 
+# Add camera overlay configuration to config.txt
+echo "Adding camera overlay configuration to config.txt..."
+cat >> mnt/boot/config.txt << EOF
+
+# OpenScan camera configuration
+dtoverlay=imx519
+#dtoverlay=arducam-64mp # enable this for arducam hawkey and comment out imx519
+EOF
+
 # Create directories in the image
 echo "Creating directories in the image..."
 mkdir -p mnt/rootfs/home/pi/scripts
